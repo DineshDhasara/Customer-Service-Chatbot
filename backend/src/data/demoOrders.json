@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ORD1001",
+    "status": "Out for delivery",
+    "items": ["Wireless Mouse", "USB-C Cable"],
+    "deliveryDate": "2025-10-12"
+  },
+  {
+    "id": "ORD1002",
+    "status": "In transit",
+    "items": ["Bluetooth Headphones"],
+    "deliveryDate": "2025-10-15"
+  },
+  {
+    "id": "ORD1003",
+    "status": "Delivered",
+    "items": ["Laptop Sleeve"],
+    "deliveryDate": "2025-09-30"
+  }
+]

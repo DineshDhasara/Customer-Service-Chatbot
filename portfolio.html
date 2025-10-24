@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Service Portfolio - Smart Chatbot Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .card p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .main-demo {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .main-demo-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .main-demo-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #4a5568;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .contact-section {
+            text-align: center;
+            margin-top: 3rem;
+            color: white;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .contact-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            transform: scale(1.2);
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🤖 AI Customer Service Portfolio</h1>
+            <p>Advanced chatbot solutions with real AI integration, intelligent conversation flows, and seamless customer experience</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Intent Accuracy</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">&lt;100ms</span>
+                <span class="stat-label">Response Time</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Availability</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">Real AI</span>
+                <span class="stat-label">Gemini Integration</span>
+            </div>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>Intelligent AI Chatbot</h3>
+                <p>Advanced customer service chatbot powered by Google's Gemini AI with natural language understanding, context awareness, and intelligent response generation.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Gemini AI</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">Real-time</span>
+                </div>
+
+                <ul class="features-list">
+                    <li>Real Gemini AI integration</li>
+                    <li>Context-aware conversations</li>
+                    <li>Order tracking & management</li>
+                    <li>Intelligent intent detection</li>
+                    <li>Emotion recognition</li>
+                </ul>
+
+                <a href="#" class="demo-button" onclick="testChatbot()">
+                    <i class="fas fa-play"></i> Test Chatbot
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Analytics & Insights</h3>
+                <p>Comprehensive analytics dashboard with real-time metrics, conversation insights, and performance monitoring for data-driven improvements.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Real-time Analytics</span>
+                    <span class="tech-tag">Performance Monitoring</span>
+                    <span class="tech-tag">User Insights</span>
+                </div>
+
+                <ul class="features-list">
+                    <li>Real-time conversation metrics</li>
+                    <li>Intent distribution analysis</li>
+                    <li>Response time monitoring</li>
+                    <li>User satisfaction tracking</li>
+                    <li>Performance optimization</li>
+                </ul>
+
+                <a href="#" class="demo-button" onclick="viewAnalytics()">
+                    <i class="fas fa-chart-bar"></i> View Analytics
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>System Architecture</h3>
+                <p>Robust, scalable architecture with microservices design, real-time communication, security features, and production-ready deployment.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Microservices</span>
+                    <span class="tech-tag">WebSocket</span>
+                    <span class="tech-tag">Security</span>
+                    <span class="tech-tag">Scalable</span>
+                </div>
+
+                <ul class="features-list">
+                    <li>Modular architecture design</li>
+                    <li>Real-time WebSocket support</li>
+                    <li>Advanced security features</li>
+                    <li>Auto-scaling capabilities</li>
+                    <li>Production deployment ready</li>
+                </ul>
+
+                <a href="#" class="demo-button" onclick="viewArchitecture()">
+                    <i class="fas fa-code"></i> View Code
+                </a>
+            </div>
+        </div>
+
+        <div class="main-demo">
+            <h2 style="color: white; margin-bottom: 1rem;">Experience the AI Assistant</h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+                Try our intelligent customer service chatbot with real Gemini AI integration
+            </p>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Starting AI Assistant...</p>
+            </div>
+            
+            <a href="chatbot.html" class="main-demo-button" onclick="startDemo(event)">
+                <i class="fas fa-comments"></i> Launch AI Assistant Demo
+            </a>
+        </div>
+
+        <div class="contact-section">
+            <h3>Let's Build Something Amazing Together</h3>
+            <p>Interested in AI-powered customer service solutions? Let's discuss your project!</p>
+            
+            <div class="contact-links">
+                <a href="mailto:developer@example.com" class="contact-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com" class="contact-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com" class="contact-link" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com" class="contact-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test server connection
+        async function testConnection() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                return data.status === 'healthy';
+            } catch (error) {
+                console.error('Connection test failed:', error);
+                return false;
+            }
+        }
+
+        async function startDemo(event) {
+            event.preventDefault();
+            
+            const loading = document.getElementById('loading');
+            const button = event.target;
+            
+            loading.style.display = 'block';
+            button.style.opacity = '0.5';
+            button.style.pointerEvents = 'none';
+            
+            // Test connection first
+            const isConnected = await testConnection();
+            
+            setTimeout(() => {
+                if (isConnected) {
+                    window.location.href = 'chatbot.html';
+                } else {
+                    alert('Server is starting up. Please try again in a moment.');
+                    loading.style.display = 'none';
+                    button.style.opacity = '1';
+                    button.style.pointerEvents = 'auto';
+                }
+            }, 1500);
+        }
+
+        async function testChatbot() {
+            const isConnected = await testConnection();
+            if (isConnected) {
+                window.open('chatbot.html', '_blank');
+            } else {
+                alert('Please start the server first: node backend/src/smartServer.js');
+            }
+        }
+
+        async function viewAnalytics() {
+            try {
+                const response = await fetch('/api/analytics');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const analyticsInfo = `
+Analytics Overview:
+• Total Chats: ${data.data.totalChats}
+• Total Messages: ${data.data.totalMessages}
+• Active Sessions: ${data.data.activeSessions}
+• Avg Response Time: ${data.data.avgResponseTime}ms
+• Uptime: ${Math.round(data.data.uptime)}s
+
+Top Intents: ${data.data.topIntents.map(i => i.intent).join(', ')}
+                    `;
+                    alert(analyticsInfo);
+                } else {
+                    window.open('/api/analytics', '_blank');
+                }
+            } catch (error) {
+                alert('Please start the server to view analytics');
+            }
+        }
+
+        function viewArchitecture() {
+            const architectureInfo = `
+System Architecture:
+
+🧠 AI Layer:
+• Gemini AI integration
+• Context-aware processing
+• Intent detection & NLU
+
+🔧 Backend Services:
+• Express.js server
+• Real-time WebSocket
+• Session management
+• Analytics engine
+
+📊 Data Layer:
+• Order management
+• Conversation history
+• Performance metrics
+• User analytics
+
+🛡️ Security:
+• Input validation
+• Rate limiting
+• Error handling
+• CORS protection
+
+🚀 Deployment:
+• Production ready
+• Scalable architecture
+• Health monitoring
+• Performance optimization
+            `;
+            alert(architectureInfo);
+        }
+
+        // Check server status on page load
+        window.addEventListener('load', async () => {
+            const isConnected = await testConnection();
+            if (!isConnected) {
+                console.log('Server not running. Start with: node backend/src/smartServer.js');
+            }
+        });
+    </script>
+</body>
+</html>

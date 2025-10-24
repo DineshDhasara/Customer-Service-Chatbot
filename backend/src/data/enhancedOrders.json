@@ -1,0 +1,155 @@
+[
+  {
+    "id": "ORD1001",
+    "status": "Out for delivery",
+    "items": [
+      {
+        "name": "Wireless Gaming Mouse Pro",
+        "price": 79.99,
+        "quantity": 1,
+        "sku": "WGM-PRO-001"
+      },
+      {
+        "name": "USB-C to HDMI Cable 4K",
+        "price": 24.99,
+        "quantity": 1,
+        "sku": "USB-HDMI-4K"
+      }
+    ],
+    "total": 104.98,
+    "orderDate": "2025-10-08",
+    "deliveryDate": "2025-10-12",
+    "trackingNumber": "TRK123456789",
+    "courier": "FastShip Express",
+    "deliveryAddress": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "country": "USA"
+    },
+    "customerInfo": {
+      "name": "John Smith",
+      "email": "john.smith@email.com",
+      "phone": "+1-555-0123"
+    },
+    "paymentMethod": "Credit Card (**** 1234)",
+    "shippingMethod": "Standard Delivery"
+  },
+  {
+    "id": "ORD1002",
+    "status": "In transit",
+    "items": [
+      {
+        "name": "Bluetooth Noise-Cancelling Headphones",
+        "price": 199.99,
+        "quantity": 1,
+        "sku": "BT-NC-HP-001"
+      }
+    ],
+    "total": 199.99,
+    "orderDate": "2025-10-10",
+    "deliveryDate": "2025-10-15",
+    "trackingNumber": "TRK987654321",
+    "courier": "QuickDelivery",
+    "deliveryAddress": {
+      "street": "456 Oak Avenue",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zipCode": "90210",
+      "country": "USA"
+    },
+    "customerInfo": {
+      "name": "Sarah Johnson",
+      "email": "sarah.j@email.com",
+      "phone": "+1-555-0456"
+    },
+    "paymentMethod": "PayPal",
+    "shippingMethod": "Express Delivery"
+  },
+  {
+    "id": "ORD1003",
+    "status": "Delivered",
+    "items": [
+      {
+        "name": "Premium Laptop Sleeve 15\"",
+        "price": 49.99,
+        "quantity": 1,
+        "sku": "PLS-15-BLK"
+      }
+    ],
+    "total": 49.99,
+    "orderDate": "2025-09-25",
+    "deliveryDate": "2025-09-30",
+    "deliveredDate": "2025-09-30T14:30:00Z",
+    "trackingNumber": "TRK456789123",
+    "courier": "StandardPost",
+    "deliveryAddress": {
+      "street": "789 Pine Road",
+      "city": "Chicago",
+      "state": "IL",
+      "zipCode": "60601",
+      "country": "USA"
+    },
+    "customerInfo": {
+      "name": "Mike Davis",
+      "email": "mike.davis@email.com",
+      "phone": "+1-555-0789"
+    },
+    "paymentMethod": "Credit Card (**** 5678)",
+    "shippingMethod": "Standard Delivery"
+  },
+  {
+    "id": "ORD1004",
+    "status": "Processing",
+    "items": [
+      {
+        "name": "Mechanical Gaming Keyboard RGB",
+        "price": 129.99,
+        "quantity": 1,
+        "sku": "MGK-RGB-001"
+      },
+      {
+        "name": "Gaming Mouse Pad XL",
+        "price": 29.99,
+        "quantity": 1,
+        "sku": "GMP-XL-001"
+      }
+    ],
+    "total": 159.98,
+    "orderDate": "2025-10-12",
+    "estimatedShipDate": "2025-10-14",
+    "deliveryDate": "2025-10-18",
+    "customerInfo": {
+      "name": "Alex Chen",
+      "email": "alex.chen@email.com",
+      "phone": "+1-555-0321"
+    },
+    "paymentMethod": "Credit Card (**** 9012)",
+    "shippingMethod": "Standard Delivery"
+  },
+  {
+    "id": "ORD1005",
+    "status": "Cancelled",
+    "items": [
+      {
+        "name": "Wireless Charging Pad",
+        "price": 39.99,
+        "quantity": 2,
+        "sku": "WCP-001"
+      }
+    ],
+    "total": 79.98,
+    "orderDate": "2025-10-11",
+    "cancelledDate": "2025-10-12T09:15:00Z",
+    "cancelReason": "Customer requested cancellation",
+    "refundStatus": "Processed",
+    "refundAmount": 79.98,
+    "customerInfo": {
+      "name": "Lisa Wang",
+      "email": "lisa.wang@email.com",
+      "phone": "+1-555-0654"
+    },
+    "paymentMethod": "Credit Card (**** 3456)"
+  }
+]

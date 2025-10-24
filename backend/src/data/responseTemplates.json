@@ -1,0 +1,8 @@
+{
+  "order_status": "I found order **{orderId}** — current status: **{status}**. Estimated delivery: {deliveryDate}. Would you like more details?",
+  "refund": "Our refund policy: refunds are processed within 5–7 business days. For order {orderId}, I can start a refund. Proceed?",
+  "greeting": "Hello! I’m your assistant. I can help with order status, refunds, shipping, and raising tickets.",
+  "fallback": "Sorry, I didn't understand. Can you rephrase or do you want me to connect you to a human?",
+  "complaint": "I’m sorry to hear that. I can open a ticket for you or start a refund. Which do you prefer?",
+  "human_escalation": "I've created a human support ticket: {ticketId}. Our team will reach out soon."
+}

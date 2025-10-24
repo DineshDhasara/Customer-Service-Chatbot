@@ -1,0 +1,52 @@
+[
+  {
+    "name": "greeting",
+    "utterances": ["hi", "hello", "hey", "good morning", "good evening"],
+    "keywords": ["hi","hello","hey","morning","evening"]
+  },
+  {
+    "name": "order_status",
+    "utterances": ["where is my order", "track my order", "order status", "tracking"],
+    "keywords": ["order","track","status","tracking","where"]
+  },
+  {
+    "name": "refund",
+    "utterances": ["refund", "i want a refund", "return item", "money back"],
+    "keywords": ["refund","return","money back"]
+  },
+  {
+    "name": "shipping",
+    "utterances": ["shipping", "delivery", "when will it arrive"],
+    "keywords": ["ship","shipping","delivery","arrive"]
+  },
+  {
+    "name": "cancel_order",
+    "utterances": ["cancel order", "i want to cancel", "cancel my order"],
+    "keywords": ["cancel"]
+  },
+  {
+    "name": "change_address",
+    "utterances": ["change address", "update address", "wrong address"],
+    "keywords": ["address","change","update"]
+  },
+  {
+    "name": "complaint",
+    "utterances": ["damaged", "defective", "broken", "complaint"],
+    "keywords": ["damaged","defective","broken","complaint"]
+  },
+  {
+    "name": "human_escalation",
+    "utterances": ["human", "agent", "support", "representative"],
+    "keywords": ["human","agent","support","representative"]
+  },
+  {
+    "name": "thanks",
+    "utterances": ["thanks", "thank you", "thx"],
+    "keywords": ["thanks","thank"]
+  },
+  {
+    "name": "fallback",
+    "utterances": [],
+    "keywords": []
+  }
+]
