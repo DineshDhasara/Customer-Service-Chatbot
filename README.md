@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Prompt-based Customer Service Chatbot
 
 **Short:** A dark-themed portfolio project demonstrating a prompt-based customer service assistant built with React + Tailwind (frontend) and Node.js + Express (backend). It contains a small prompt-engine (intent detection + templating) and optional adapters for LLMs.
@@ -70,3 +71,6 @@ Replace heuristic NLU with embeddings + classifier
 Add analytics and conversation transcripts storage (MongoDB)
 
 Real LLM integration with rate-limits and safety checks
+=======
+# Customer-Service-Chatbot
+>>>>>>> b86d274f1a6cc193c55c086536205a31d296e450
