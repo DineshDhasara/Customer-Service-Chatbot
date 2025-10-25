@@ -3,6 +3,7 @@
  * Provides intelligent responses with context awareness
  */
 
+
 // Import fetch for Node.js compatibility
 let fetch;
 try {
