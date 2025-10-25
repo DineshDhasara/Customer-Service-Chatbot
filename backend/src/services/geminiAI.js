@@ -20,7 +20,7 @@ try {
 class GeminiAI {
     constructor() {
         // Use the provided Gemini API key
-        this.apiKey = process.env.GEMINI_API_KEY || 'AIzaSyDW7t0CWuw_h3r1cfz72ktm97gXxCHhN_E';
+        this.apiKey = process.env.GEMINI_API_KEY ;
         // Using the specified model from the request
         this.baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
         this.conversationHistory = new Map();
