@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+        }
+        #log {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modal Test Page</h1>
+    
+    <button onclick="testNotifications()">Test Notifications Modal</button>
+    <button onclick="testCompare()">Test Compare Modal</button>
+    <button onclick="testPriceHistory()">Test Price History Modal</button>
+    <button onclick="verifyModals()">Verify All Modals Exist</button>
+    
+    <div id="log"></div>
+    
+    <!-- Test Modals -->
+    <div id="notificationsModal" class="modal">
+        <div class="modal-content">
+            <h2>Notifications Modal</h2>
+            <p>This is the notifications modal</p>
+            <button onclick="closeNotifications()">Close</button>
+        </div>
+    </div>
+    
+    <div id="compareModal" class="modal">
+        <div class="modal-content">
+            <h2>Compare Modal</h2>
+            <p>This is the compare modal</p>
+            <button onclick="closeCompare()">Close</button>
+        </div>
+    </div>
+    
+    <div id="priceHistoryModal" class="modal">
+        <div class="modal-content">
+            <h2>Price History Modal</h2>
+            <p>This is the price history modal</p>
+            <button onclick="closePriceHistory()">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        function verifyModals() {
+            log('=== Verifying Modals ===');
+            const notif = document.getElementById('notificationsModal');
+            const comp = document.getElementById('compareModal');
+            const price = document.getElementById('priceHistoryModal');
+            
+            log(`notificationsModal: ${notif ? 'EXISTS ✓' : 'MISSING ✗'}`);
+            log(`compareModal: ${comp ? 'EXISTS ✓' : 'MISSING ✗'}`);
+            log(`priceHistoryModal: ${price ? 'EXISTS ✓' : 'MISSING ✗'}`);
+        }
+        
+        function testNotifications() {
+            log('Testing notifications modal...');
+            const modal = document.getElementById('notificationsModal');
+            if (modal) {
+                modal.classList.add('active');
+                log('Notifications modal opened ✓');
+            } else {
+                log('ERROR: Notifications modal not found! ✗');
+            }
+        }
+        
+        function testCompare() {
+            log('Testing compare modal...');
+            const modal = document.getElementById('compareModal');
+            if (modal) {
+                modal.classList.add('active');
+                log('Compare modal opened ✓');
+            } else {
+                log('ERROR: Compare modal not found! ✗');
+            }
+        }
+        
+        function testPriceHistory() {
+            log('Testing price history modal...');
+            const modal = document.getElementById('priceHistoryModal');
+            if (modal) {
+                modal.classList.add('active');
+                log('Price history modal opened ✓');
+            } else {
+                log('ERROR: Price history modal not found! ✗');
+            }
+        }
+        
+        function closeNotifications() {
+            const modal = document.getElementById('notificationsModal');
+            if (modal) {
+                modal.classList.remove('active');
+                log('Notifications modal closed');
+            }
+        }
+        
+        function closeCompare() {
+            const modal = document.getElementById('compareModal');
+            if (modal) {
+                modal.classList.remove('active');
+                log('Compare modal closed');
+            }
+        }
+        
+        function closePriceHistory() {
+            const modal = document.getElementById('priceHistoryModal');
+            if (modal) {
+                modal.classList.remove('active');
+                log('Price history modal closed');
+            }
+        }
+        
+        // Auto-verify on load
+        document.addEventListener('DOMContentLoaded', function() {
+            log('Page loaded');
+            verifyModals();
+        });
+    </script>
+</body>
+</html>

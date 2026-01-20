@@ -1,0 +1,142 @@
+/* Price Alert Modal Styles */
+.alert-product-info {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.alert-product-info img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.alert-product-info h4 {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+}
+
+.price-slider-container {
+    margin: 20px 0;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.price-display {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.alert-options {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alert-options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.set-alert-btn {
+    background: var(--warning-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    width: 100%;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.set-alert-btn:hover {
+    background: #e67e00;
+}
+
+/* Price Drop Notification */
+.toast.price-drop {
+    width: 300px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.price-drop-content {
+    padding: 15px;
+    flex: 1;
+}
+
+.price-drop h4 {
+    margin: 0 0 5px;
+    color: var(--warning-color);
+}
+
+.price-drop p {
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+}
+
+.price-change {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: var(--gray);
+}
+
+.arrow {
+    color: var(--gray);
+}
+
+.new-price {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.view-deal-btn {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.view-deal-btn:hover {
+    background: var(--primary-dark);
+}
+
+.close-toast {
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    align-self: flex-start;
+}
+
+.close-toast:hover {
+    color: var(--danger-color);
+}

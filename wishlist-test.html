@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .wishlist-btn {
+            background: none;
+            border: none;
+            color: red;
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        .wishlist-items {
+            margin-top: 30px;
+        }
+        .wishlist-item {
+            border: 1px solid #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .remove-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wishlist Test</h1>
+    
+    <div id="products">
+        <div class="product">
+            <button class="wishlist-btn" onclick="toggleWishlist(1)">❤</button>
+            <div>
+                <h3>iPhone 15 Pro Max</h3>
+                <p>₹134,900</p>
+            </div>
+        </div>
+        <div class="product">
+            <button class="wishlist-btn" onclick="toggleWishlist(2)">❤</button>
+            <div>
+                <h3>Samsung Galaxy S24 Ultra</h3>
+                <p>₹109,999</p>
+            </div>
+        </div>
+        <div class="product">
+            <button class="wishlist-btn" onclick="toggleWishlist(3)">❤</button>
+            <div>
+                <h3>MacBook Air M2</h3>
+                <p>₹99,900</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Your Wishlist (<span id="wishlist-count">0</span>)</h2>
+    <div id="wishlist-items" class="wishlist-items">
+        <!-- Wishlist items will be displayed here -->
+    </div>
+
+    <script>
+        // Sample products data
+        const products = [
+            { id: 1, name: "iPhone 15 Pro Max", price: 134900 },
+            { id: 2, name: "Samsung Galaxy S24 Ultra", price: 109999 },
+            { id: 3, name: "MacBook Air M2", price: 99900 }
+        ];
+
+        // Get wishlist from localStorage
+        function getWishlist() {
+            const wishlist = localStorage.getItem('testWishlist');
+            return wishlist ? JSON.parse(wishlist) : [];
+        }
+
+        // Save wishlist to localStorage
+        function saveWishlist(wishlist) {
+            localStorage.setItem('testWishlist', JSON.stringify(wishlist));
+        }
+
+        // Toggle item in wishlist
+        function toggleWishlist(productId) {
+            console.log('Toggle wishlist for product:', productId);
+            const wishlist = getWishlist();
+            const index = wishlist.findIndex(item => item.id === productId);
+            
+            if (index !== -1) {
+                // Remove from wishlist
+                wishlist.splice(index, 1);
+                console.log('Removed from wishlist');
+            } else {
+                // Add to wishlist
+                const product = products.find(p => p.id === productId);
+                if (product) {
+                    wishlist.push(product);
+                    console.log('Added to wishlist');
+                }
+            }
+            
+            saveWishlist(wishlist);
+            updateWishlistDisplay();
+        }
+
+        // Update wishlist display
+        function updateWishlistDisplay() {
+            const wishlist = getWishlist();
+            const wishlistItems = document.getElementById('wishlist-items');
+            const wishlistCount = document.getElementById('wishlist-count');
+            
+            // Update count
+            wishlistCount.textContent = wishlist.length;
+            
+            // Update items
+            wishlistItems.innerHTML = '';
+            
+            if (wishlist.length === 0) {
+                wishlistItems.innerHTML = '<p>Your wishlist is empty</p>';
+                return;
+            }
+            
+            wishlist.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'wishlist-item';
+                itemElement.innerHTML = `
+                    <div>
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price}</p>
+                    </div>
+                    <button class="remove-btn" onclick="toggleWishlist(${item.id})">Remove</button>
+                `;
+                wishlistItems.appendChild(itemElement);
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded, updating wishlist display');
+            updateWishlistDisplay();
+        });
+    </script>
+</body>
+</html>

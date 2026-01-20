@@ -1,0 +1,132 @@
+/* Trending Offers Styles */
+
+.trending-section {
+    padding: 2rem 0;
+    background-color: var(--light-bg);
+}
+
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.trending-offer-card {
+    position: relative;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.trending-offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.trending-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.trending-offer-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.trending-offer-content {
+    padding: 1rem;
+}
+
+.trending-offer-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.5rem;
+}
+
+.trending-offer-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.trending-offer-price .current-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.trending-offer-price .discount {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.trending-offer-platform {
+    font-size: 0.85rem;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+}
+
+.trending-offer-platform::before {
+    content: "\f54e"; /* Font Awesome store icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .trending-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .trending-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .trending-section {
+    background-color: var(--dark-bg);
+}
+
+[data-theme="dark"] .trending-offer-card {
+    background-color: var(--dark-card);
+}
+
+[data-theme="dark"] .trending-offer-title {
+    color: var(--light);
+}
+
+[data-theme="dark"] .trending-offer-platform {
+    color: var(--light-gray);
+}

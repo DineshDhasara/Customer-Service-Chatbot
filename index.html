@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Alert - Best Deals & Discounts</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-price-alert.css">
+    <link rel="stylesheet" href="styles-chatbot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tags"></i>
+                    <span>Offer Alert</span>
+                </div>
+                <button id="darkModeToggle" class="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#offers" class="nav-link">Offers</a>
+                    <div id="authSection" class="auth-section">
+                        <button id="loginBtn" class="login-btn" onclick="loginWithGoogle()">
+                            <i class="fab fa-google"></i>
+                            <span>Login with Google</span>
+                        </button>
+                        <div id="userProfile" class="user-profile" style="display: none;">
+                            <img id="userAvatar" class="user-avatar" alt="User avatar">
+                            <span id="userName" class="user-name"></span>
+                            <button id="logoutBtn" class="logout-btn" onclick="logoutUser()" title="Logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="wishlistBtn" class="wishlist-btn" onclick="showWishlist()" aria-label="Wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </button>
+                    <button id="notificationsBtn" class="notifications-btn" onclick="showNotifications()" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notifications-count">0</span>
+                    </button>
+                    <button id="compareBtn" class="compare-btn" onclick="showCompare()" aria-label="Compare">
+                        <i class="fas fa-balance-scale"></i>
+                        <span class="compare-count">0</span>
+                    </button>
+                    <button class="visual-search-btn" onclick="openVisualSearch()" aria-label="Visual Search" title="Click to open Visual Product Search">
+                        <i class="fas fa-eye"></i>
+                        <span>Visual Search</span>
+                    </button>
+                    <button class="chat-toggle-btn" onclick="toggleChat()">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat Assistant</span>
+                    </button>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover Amazing Deals</h1>
+                <p class="hero-subtitle">Find the best offers from Amazon, Flipkart, Myntra & more!</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-fire"></i>
+                        <div class="stat-info">
+                            <h3 id="totalOffers">0</h3>
+                            <p>Active Offers</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-percent"></i>
+                        <div class="stat-info">
+                            <h3 id="avgDiscount">0%</h3>
+                            <p>Avg Discount</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-piggy-bank"></i>
+                        <div class="stat-info">
+                            <h3 id="totalSavings">₹0</h3>
+                            <p>Total Savings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section" id="offers">
+        <div class="container">
+            <div class="search-bar">
+                <div class="search-input-group">
+                    <input type="text" id="searchInput" placeholder="Search for offers...">
+                    <button onclick="searchOffers()" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button onclick="openImageSearch()" class="image-search-btn" title="Search with Image">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <button onclick="toggleVoiceSearch()" class="voice-search-btn" title="Voice Search">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="filters">
+                <div class="filter-group">
+                    <label><i class="fas fa-layer-group"></i> Category</label>
+                    <select id="categoryFilter" onchange="applyFilters()">
+                        <option value="">All Categories</option>
+                        <!-- Categories will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-store"></i> Platform</label>
+                    <select id="platformFilter" onchange="applyFilters()">
+                        <option value="">All Platforms</option>
+                        <!-- Platforms will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-percentage"></i> Min Discount</label>
+                    <select id="discountFilter" onchange="applyFilters()">
+                        <option value="">Any Discount</option>
+                        <option value="20">20% or more</option>
+                        <option value="30">30% or more</option>
+                        <option value="40">40% or more</option>
+                        <option value="50">50% or more</option>
+                    </select>
+                </div>
+                <button class="reset-btn" onclick="resetFilters()">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers section starts here -->
+
+    <!-- All Offers Section -->
+    <section class="offers-section" id="offers">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-tags"></i> All Offers</h2>
+                <p>Browse all available deals</p>
+            </div>
+            <div id="loadingSpinner" class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading amazing deals...</p>
+            </div>
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No offers found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+            <div id="offersGrid" class="offers-grid">
+                <!-- Offers will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <i class="fas fa-robot"></i>
+                <div>
+                    <h3>AI Shopping Assistant</h3>
+                    <span class="status-indicator">
+                        <span class="status-dot"></span>
+                        Online
+                    </span>
+                </div>
+            </div>
+            <div class="chatbot-header-actions">
+                <button class="voice-settings-btn" id="voiceSettingsBtn" onclick="toggleVoiceSettings()" title="Toggle Voice Assistant">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="close-chat-btn" onclick="toggleChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Hi! 👋 I'm your AI shopping assistant. I can help you find the best deals on electronics, fashion, and more. What are you looking for today?</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="suggested-offers" id="suggestedOffers" style="display: none;">
+            <h4 class="suggested-offers-heading">Recommended Deals</h4>
+            <div class="suggested-offers-container">
+                <!-- Suggested offers will appear here -->
+            </div>
+        </div>
+        
+        <div class="chatbot-input">
+            <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceInput()">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <input 
+                type="text" 
+                id="chatInput" 
+                placeholder="Ask me about deals..."
+                onkeypress="handleChatKeyPress(event)"
+            >
+            <button class="send-btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button (Mobile) -->
+    <button class="floating-chat-btn" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+        <span class="notification-badge">AI</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-tags"></i> Offer Alert</h3>
+                    <p>Your one-stop destination for the best deals and discounts from top e-commerce platforms.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#offers">Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Platforms</h4>
+                    <ul>
+                        <li><a href="https://amazon.in" target="_blank">Amazon</a></li>
+                        <li><a href="https://flipkart.com" target="_blank">Flipkart</a></li>
+                        <li><a href="https://myntra.com" target="_blank">Myntra</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Offer Alert. All rights reserved. | Powered by Gemini AI</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notifications Modal -->
+    <div id="notificationsModal" class="modal">
+        <div class="modal-content notifications-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-bell"></i> Notifications</h2>
+                <button class="close-btn" onclick="closeNotificationsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="notifications-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="price-drop">Price Drops</button>
+                    <button class="filter-btn" data-filter="new-offers">New Offers</button>
+                    <button class="filter-btn" data-filter="unread">Unread</button>
+                </div>
+                <div id="notificationsList" class="notifications-list">
+                    <div class="no-notifications">
+                        <i class="fas fa-bell-slash"></i>
+                        <p>No notifications yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compare Modal -->
+    <div id="compareModal" class="modal">
+        <div class="modal-content compare-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-balance-scale"></i> Compare Products</h2>
+                <button class="close-btn" onclick="closeCompareModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="compareList" class="compare-list">
+                    <div class="no-compare">
+                        <i class="fas fa-balance-scale"></i>
+                        <p>Add products to compare</p>
+                        <small>Select up to 3 products to compare their features</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Search Modal -->
+    <div id="imageSearchModal" class="modal">
+        <div class="modal-content image-search-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-camera"></i> Visual Deal Finder</h2>
+                <button class="close-btn" onclick="closeImageSearchModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="image-upload-area" id="imageUploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Product Image</h3>
+                        <p>Take a photo or upload an image to find the best deals</p>
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                        <button class="upload-btn" onclick="document.getElementById('imageInput').click()">
+                            <i class="fas fa-upload"></i> Choose Image
+                        </button>
+                        <button class="camera-btn" onclick="startCamera()">
+                            <i class="fas fa-camera"></i> Take Photo
+                        </button>
+                    </div>
+                    <div class="preview-area" id="imagePreview" style="display: none;">
+                        <img id="previewImg" src="" alt="Product preview">
+                        <div class="preview-actions">
+                            <button class="analyze-btn" onclick="analyzeImage()">
+                                <i class="fas fa-search"></i> Find Deals
+                            </button>
+                            <button class="remove-btn" onclick="removeImage()">
+                                <i class="fas fa-times"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="camera-view" id="cameraView" style="display: none;">
+                    <video id="cameraVideo" autoplay></video>
+                    <canvas id="cameraCanvas" style="display: none;"></canvas>
+                    <div class="camera-controls">
+                        <button class="capture-btn" onclick="capturePhoto()">
+                            <i class="fas fa-camera"></i> Capture
+                        </button>
+                        <button class="cancel-btn" onclick="stopCamera()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+                <div class="search-results" id="imageSearchResults" style="display: none;">
+                    <h3>Found Deals for Similar Products</h3>
+                    <div id="imageSearchOffers" class="offers-grid">
+                        <!-- Visual search results will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Search Modal -->
+    <div id="voiceSearchModal" class="modal">
+        <div class="modal-content voice-search-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-microphone"></i> Voice Shopping Assistant</h2>
+                <button class="close-btn" onclick="closeVoiceSearchModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="voice-interface">
+                    <div class="voice-visualizer" id="voiceVisualizer">
+                        <div class="voice-circle" id="voiceCircle">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="voice-waves">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="voice-status" id="voiceStatus">
+                        <p>Click the microphone and speak your shopping needs</p>
+                    </div>
+                    <div class="voice-transcript" id="voiceTranscript" style="display: none;">
+                        <h4>You said:</h4>
+                        <p id="transcriptText"></p>
+                    </div>
+                    <div class="voice-response" id="voiceResponse" style="display: none;">
+                        <h4>Found for you:</h4>
+                        <div id="voiceSearchOffers" class="offers-grid">
+                            <!-- Voice search results will appear here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-examples">
+                    <h4>Try saying:</h4>
+                    <div class="example-phrases">
+                        <button class="example-btn" onclick="speakExample('Find iPhone deals under 50000')">
+                            "Find iPhone deals under 50000"
+                        </button>
+                        <button class="example-btn" onclick="speakExample('Show me trending laptops')">
+                            "Show me trending laptops"
+                        </button>
+                        <button class="example-btn" onclick="speakExample('Best deals on Samsung phones')">
+                            "Best deals on Samsung phones"
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Price History Modal -->
+    <div id="priceHistoryModal" class="modal">
+        <div class="modal-content price-history-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-line"></i> Price History & Tracker</h2>
+                <button class="close-btn" onclick="closePriceHistoryModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="price-header">
+                    <div class="product-info">
+                        <img id="priceHistoryImage" src="" alt="Product">
+                        <div class="product-details">
+                            <h3 id="priceHistoryTitle"></h3>
+                            <p id="priceHistoryDescription"></p>
+                            <div class="current-price-info">
+                                <span class="current-price" id="currentPrice"></span>
+                                <span class="price-change" id="priceChange"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price-actions">
+                        <button class="track-btn" id="trackPriceBtn" onclick="togglePriceTracking()">
+                            <i class="fas fa-bell"></i> Track Price
+                        </button>
+                        <button class="alert-btn" onclick="setPriceAlert()">
+                            <i class="fas fa-tag"></i> Set Alert
+                        </button>
+                    </div>
+                </div>
+                <div class="price-chart-container">
+                    <canvas id="priceChart" width="800" height="400"></canvas>
+                </div>
+                <div class="price-stats">
+                    <div class="stat-card">
+                        <h4>Lowest Price</h4>
+                        <p id="lowestPrice"></p>
+                        <span id="lowestDate"></span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Highest Price</h4>
+                        <p id="highestPrice"></p>
+                        <span id="highestDate"></span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Average Price</h4>
+                        <p id="averagePrice"></p>
+                        <span>Over last 30 days</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Price Trend</h4>
+                        <p id="priceTrend"></p>
+                        <span id="trendPrediction"></span>
+                    </div>
+                </div>
+                <div class="price-prediction">
+                    <h4>AI Price Prediction</h4>
+                    <div class="prediction-card">
+                        <div class="prediction-info">
+                            <p id="predictionText"></p>
+                            <div class="confidence-meter">
+                                <span>Confidence:</span>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" id="confidenceFill"></div>
+                                </div>
+                                <span id="confidencePercent"></span>
+                            </div>
+                        </div>
+                        <div class="recommendation" id="recommendation">
+                            <i class="fas fa-lightbulb"></i>
+                            <span id="recommendationText"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="voice-assistant.js"></script>
+</body>
+</html>
